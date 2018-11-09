@@ -1,6 +1,6 @@
 # Project 7 - WordPress Pentesting
 
-Time spent: **X** hours spent in total
+Time spent: **8** hours spent in total
 
 > Objective: Find, analyze, recreate, and document **five vulnerabilities** affecting an old version of WordPress
 
@@ -23,53 +23,77 @@ Time spent: **X** hours spent in total
 - [x] Affected source code:
   - [Link 1](https://github.com/WordPress/WordPress/commit/f72b21af23da6b6d54208e5c1d65ececdaa109c8)
 
-2. (Required) Vulnerability Name or ID
+2. (Required) Persisten CSRF
 
-- [ ] Summary:
-  - Vulnerability types:
-  - Tested in version:
-  - Fixed in version:
-- [ ] GIF Walkthrough:
-- [ ] Steps to recreate:
-- [ ] Affected source code:
+- [x] Summary:
+  - Vulnerability types: CSRF
+  - Tested in version: 4.2
+  - Fixed in version: 4.7.2
+- [x] GIF Walkthrough:
+  ![](CSRF.gif)
+- [x] Steps to recreate:
+  1. On admin, in the comment section of the post, comment:
+  ``` html
+  <a title='x onmouseover=alert(unescape(/hello%20world/.source)) style=position:absolute;left:0;top:0;width:5000px;height:5000px AAAAAAAAAAAA...[64 KB]..AAA'></a>
+  ```
+  2. Make sure that the A character length provided is at least 64kb.
+- [x] Affected source code:
+  - [Link 1](https://www.exploit-db.com/exploits/36844/)
+
+3. (Required) User Enumeration
+
+- [x] Summary:
+  - Vulnerability types: User Enumeration
+  - Tested in version: 4.2
+  - Fixed in version: 4.4
+- [x] GIF Walkthrough:
+  ![](User_Enumeration.gif)
+- [x] Steps to recreate:
+  1. Go to the login page of WordPress.
+  2. Start by typing in any username and password combinations.
+  3. In version 4.2 of WordPress, if you enter in a correct username i.e admin, it will display a message saying
+     the username is valid.
+  4. Now, knowing the username, you can brute froce the password until you get the correct password.
+- [x] Affected source code:
   - [Link 1](https://core.trac.wordpress.org/browser/tags/version/src/source_file.php)
 
-3. (Required) Vulnerability Name or ID
+4. (Optional) Pupload Same-Origin Method Execution attack
 
-- [ ] Summary:
-  - Vulnerability types:
-  - Tested in version:
-  - Fixed in version:
-- [ ] GIF Walkthrough:
-- [ ] Steps to recreate:
-- [ ] Affected source code:
-  - [Link 1](https://core.trac.wordpress.org/browser/tags/version/src/source_file.php)
+- [x] Summary:
+  - Vulnerability types: SOME
+  - Tested in version: 4.2
+  - Fixed in version: 4.2.8
+- [x] GIF Walkthrough:
+  ![](SOME.gif)
+- [x] Steps to recreate:
+  1. In the "leave a reply" section, inside the comment box, type in:
+  ```html
+	<button onclick="fire()">Click</button>
+	<script>
+		function fire() { 
+			open('javascript:setTimeout("location=\'http://wpdistillery.vm/wp-includes/js/plupload/plupload.flash.swf?target%g=opener.document.body.firstElementChild.nextElementSibling.nextElementSibling.nextElementSibling.firstElementChild.click&uid%g=hello&\'", 2000)');
+  			setTimeout('location="http://wpdistillery.vm/wp-admin/plugin-install.php?tab=plugin-information&plugin=wp-super-cache&TB_iframe=true&width=600&height=550"')
+		}
+	</script>
+  ```
 
-4. (Optional) Vulnerability Name or ID
+  2. Click on the "Click" Button on the newly reply post that appeared.
+- [x] Affected source code:
+  - [Link 1](https://gist.github.com/cure53/09a81530a44f6b8173f545accc9ed07e)
 
-- [ ] Summary:
-  - Vulnerability types:
-  - Tested in version:
-  - Fixed in version:
-- [ ] GIF Walkthrough:
-- [ ] Steps to recreate:
-- [ ] Affected source code:
-  - [Link 1](https://core.trac.wordpress.org/browser/tags/version/src/source_file.php)
-
-5. (Optional) Vulnerability Name or ID
-
-- [ ] Summary:
-  - Vulnerability types:
-  - Tested in version:
-  - Fixed in version:
-- [ ] GIF Walkthrough:
-- [ ] Steps to recreate:
-- [ ] Affected source code:
-  - [Link 1](https://core.trac.wordpress.org/browser/tags/version/src/source_file.php)
-
-## Assets
-
-List any additional assets, such as scripts or files
+5. (Optional) Audio Playlist XSS
+- [x] Summary:
+  - Vulnerability types: XSS
+  - Tested in version: 4.2
+  - Fixed in version: 4.7.3
+- [x] GIF Walkthrough:
+  ![](XSS2.gif)
+- [x] Steps to recreate:
+  1. Download the audio file from this link - [audio](https://www.securify.nl/advisory/SFY20160742/xss.mp3)
+  2. Upload the audio file into the media library
+  3. Create a page with audio file as a playlist
+- [x] Affected source code:
+  - [Link 1](https://core.trac.wordpress.org/changeset/33359)
 
 ## Resources
 
@@ -80,7 +104,7 @@ GIFs created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while doing the work
+One of the challenge I encounter was trying to get some of the exploits to work as intended.
 
 ## License
 
