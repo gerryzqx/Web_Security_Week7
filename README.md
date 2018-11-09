@@ -13,6 +13,7 @@ Time spent: **X** hours spent in total
   - Tested in version: 4.2
   - Fixed in version: 4.7.2
 - [x] GIF Walkthrough:
+  ![](XSS.gif)
 - [x] Steps to recreate:
   1. Login as admin, write in the comment section:
   ```html
