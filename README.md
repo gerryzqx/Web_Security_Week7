@@ -6,7 +6,23 @@ Time spent: **X** hours spent in total
 
 ## Pentesting Report
 
-1. (Required) Vulnerability Name or ID
+1. (Required) Authenticated Shortcode Tags XSS
+
+- [x] Summary:
+  - Vulnerability types: XSS
+  - Tested in version: 4.2
+  - Fixed in version: 4.7.2
+- [x] GIF Walkthrough:
+- [x] Steps to recreate:
+  1. Login as admin, write in the comment section:
+  ```html
+  <a href = "XSS" onmouseover=alert(1) rel="nofollow">CLICK ME!</a>
+    ```
+  2. Hover over your mouse to the "CLICK ME!" link.
+- [x] Affected source code:
+  - [Link 1](https://github.com/WordPress/WordPress/commit/f72b21af23da6b6d54208e5c1d65ececdaa109c8)
+
+2. (Required) Vulnerability Name or ID
 
 - [ ] Summary:
   - Vulnerability types:
@@ -17,7 +33,7 @@ Time spent: **X** hours spent in total
 - [ ] Affected source code:
   - [Link 1](https://core.trac.wordpress.org/browser/tags/version/src/source_file.php)
 
-1. (Required) Vulnerability Name or ID
+3. (Required) Vulnerability Name or ID
 
 - [ ] Summary:
   - Vulnerability types:
@@ -28,7 +44,7 @@ Time spent: **X** hours spent in total
 - [ ] Affected source code:
   - [Link 1](https://core.trac.wordpress.org/browser/tags/version/src/source_file.php)
 
-1. (Required) Vulnerability Name or ID
+4. (Optional) Vulnerability Name or ID
 
 - [ ] Summary:
   - Vulnerability types:
@@ -39,18 +55,7 @@ Time spent: **X** hours spent in total
 - [ ] Affected source code:
   - [Link 1](https://core.trac.wordpress.org/browser/tags/version/src/source_file.php)
 
-1. (Optional) Vulnerability Name or ID
-
-- [ ] Summary:
-  - Vulnerability types:
-  - Tested in version:
-  - Fixed in version:
-- [ ] GIF Walkthrough:
-- [ ] Steps to recreate:
-- [ ] Affected source code:
-  - [Link 1](https://core.trac.wordpress.org/browser/tags/version/src/source_file.php)
-
-1. (Optional) Vulnerability Name or ID
+5. (Optional) Vulnerability Name or ID
 
 - [ ] Summary:
   - Vulnerability types:
